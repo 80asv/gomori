@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
-import { useGame } from '../../hooks/useGame';
+import { GameContext } from '../../context/GameContext';
 import { generateCards } from '../../logic/generateCards';
 import Card from '../Card/Card';
 
@@ -8,7 +8,7 @@ import Card from '../Card/Card';
 
 const ScreenGame = () => {
 
-	const { start, handleStart, handleFinish } = useGame();
+	const { start, handleStart, handleFinish } = useContext(GameContext);
 
 	return (
 		<ScreenStyles className='screen'>
@@ -25,8 +25,8 @@ const ScreenGame = () => {
 					<button className='screen__controls-btn screen__controls-btn-finish' onClick={handleFinish}>Finish</button>
 				</div>
 				<div className="screen__controls-time">
-					<p className='screen__controls-time-label'>Time</p>
-					<p className='screen__controls-time-timer'>00</p>
+					<p className='screen__controls-time-label'>Score</p>
+					<p className='screen__controls-time-score'>0</p>
 				</div>
 			</div>
 		</ScreenStyles>
@@ -126,14 +126,8 @@ const ScreenStyles = styled.div`
 		font-weight: 500;
 	}
 
-	.screen__controls-time-timer {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		width: 3.1875rem;
-		height: 2.8125rem;	
+	.screen__controls-time-score {
 		border-radius: 11px;
-		border: 2px solid var(--secundary-color);
 		font-weight: 500;
 		font-size: 1.5rem;
 		color: var(--black-light);

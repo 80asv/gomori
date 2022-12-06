@@ -1,18 +1,23 @@
 import React from 'react'
 import styled from 'styled-components'
 import ThemeProvider from '../../context/ThemeContext'
+import GameHeader from '../GameHeader/GameHeader'
 import Header from '../Header/Header'
 import ScreenGame from '../ScreenGame/ScreenGame'
+import GameContextProvider from '../../context/GameContext';
 
 const Game = () => {
     return (
         <section className='game'>
-            <ThemeProvider>
-                <Header/>
-                <StyleGame className='game__container'>
-                    <ScreenGame/>
-                </StyleGame>
-            </ThemeProvider>
+            <GameContextProvider>
+                <ThemeProvider>
+                    <Header/>
+                    <StyleGame className='game__container'>
+                        <GameHeader/>
+                        <ScreenGame/>
+                    </StyleGame>
+                </ThemeProvider>
+            </GameContextProvider>
         </section>
     )
 }
