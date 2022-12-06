@@ -8,15 +8,15 @@ import Card from '../Card/Card';
 
 const ScreenGame = () => {
 
-	const { start, handleStart, handleFinish } = useContext(GameContext);
+	const { start, handleStart, handleFinish, gameOver } = useContext(GameContext);
 
 	return (
 		<ScreenStyles className='screen'>
-			<div className={`screen__container-cards ${ start ? "" : "pause" }`}>
+			<div className={`screen__container-cards ${ start ? "" : "pause" } ${ gameOver ? 'game-over' : '' }`}>
 				{
 					start 
 					? generateCards().map((card) => <Card key={card.number}number={card.number} area={card.area}/>)
-					: <p>Press Start</p>
+					: gameOver ? <p>You lose...</p> : <p>Press Start</p>
 				}
 			</div>
 			<div className="screen__controls">
@@ -56,6 +56,19 @@ const ScreenStyles = styled.div`
 		border: 4px solid #d4d4d4;
 
 		&.pause{
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			background-color: var(--pause-game);
+
+			p{
+				display: block;
+				font-size: 3rem;
+				color: #b5b5b5;
+			}
+		}
+
+		&.game-over{
 			display: flex;
 			justify-content: center;
 			align-items: center;

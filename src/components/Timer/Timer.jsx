@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from 'react'
 
 const Timer = () => {
-
-    const [timer, setTimer] = useState(15);
+	const [timer, setTimer] = useState(15);
 
     useEffect(() => {
         let sampleInterval = setInterval(() => {
-          if (timer > 0) {
-            setTimer(timer - 1);
-          }
-          if (timer === 0) {
-              clearInterval(sampleInterval);
-          }
+			if (timer > 0) {
+				setTimer(timer - 1);
+			}
+			if (timer === 0) {
+				clearInterval(sampleInterval);
+			}
         }, 1000);
 
         return () => {

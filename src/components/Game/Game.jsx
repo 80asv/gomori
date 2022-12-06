@@ -9,15 +9,15 @@ import GameContextProvider from '../../context/GameContext';
 const Game = () => {
     return (
         <section className='game'>
-            <GameContextProvider>
-                <ThemeProvider>
-                    <Header/>
-                    <StyleGame className='game__container'>
-                        <GameHeader/>
-                        <ScreenGame/>
-                    </StyleGame>
-                </ThemeProvider>
-            </GameContextProvider>
+            <ThemeProvider>
+                <Header/>
+                <GameContextProvider>
+                        <StyleGame className='game__container'>
+                            <GameHeader/>
+                            <ScreenGame/>
+                        </StyleGame>
+                </GameContextProvider>
+            </ThemeProvider>
         </section>
     )
 }

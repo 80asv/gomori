@@ -5,12 +5,12 @@ import Timer from '../Timer/Timer';
 
 const GameHeader = ({ numLevel }) => {
 
-  const { start } = useContext(GameContext)
+  const { start } = useContext(GameContext);
 
   return (
     <StyleHeaderGame className='game-header'>
         <h2>Level {numLevel || 1}</h2>
-        { start ? <Timer time={15}/> : <p>00:00</p> }
+        { start ? <Timer initialTimer={15}/> : <p>00:00</p> }
     </StyleHeaderGame>
   )
 }

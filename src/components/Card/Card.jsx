@@ -1,16 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
-import { generateCards } from '../../logic/generateCards'
+import { GameContext } from '../../context/GameContext';
 
-generateCards();
 
 const Card = ({ number, area }) => {
 
-    
+    const { handleClickCard } = useContext(GameContext);
 
     return (
-        <SytlesCard className='card' style={{gridArea: area}}>
-            <p className='card__number'>{number}</p>
+        <SytlesCard className='card' style={{gridArea: area}} onClick={(e)=> handleClickCard(e)}>
+            {number}
         </SytlesCard>
     )
 }
@@ -24,11 +23,9 @@ const SytlesCard = styled.div`
     background-color: rgba(27, 213, 238, 0.33);
     border-radius: 1.5rem;
     cursor: pointer;
-    .card__number{
-        color: var(--white-color);
-        font-weight: 500;
-        font-size: 2rem;
-    }
+    color: var(--white-color);
+    font-weight: 500;
+    font-size: 2rem;
 `;
 
 
