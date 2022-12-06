@@ -1,44 +1,72 @@
 import React from 'react'
 import styled from 'styled-components'
+import { useGame } from '../../hooks/useGame';
+import { generateCards } from '../../logic/generateCards';
+import Card from '../Card/Card';
+
+
 
 const ScreenGame = () => {
-  return (
-    <ScreenStyles className='screen'>
-        <div className="screen__container-cards">
 
-        </div>
-		<div className="screen__controls">
-			<div className="screen__controls-btns">
-				<button className='screen__controls-btn screen__controls-btn-start'>Start</button>
-				<button className='screen__controls-btn screen__controls-btn-restart'>Restart</button>
+	const { start, handleStart, handleFinish } = useGame();
+
+	return (
+		<ScreenStyles className='screen'>
+			<div className={`screen__container-cards ${ start ? "" : "pause" }`}>
+				{
+					start 
+					? generateCards().map((card) => <Card key={card.number}number={card.number} area={card.area}/>)
+					: <p>Press Start</p>
+				}
 			</div>
-			<div className="screen__controls-time">
-				<p className='screen__controls-time-label'>Time</p>
-				<p className='screen__controls-time-timer'>00</p>
+			<div className="screen__controls">
+				<div className="screen__controls-btns">
+					<button className='screen__controls-btn screen__controls-btn-start' onClick={handleStart}>Start</button>
+					<button className='screen__controls-btn screen__controls-btn-finish' onClick={handleFinish}>Finish</button>
+				</div>
+				<div className="screen__controls-time">
+					<p className='screen__controls-time-label'>Time</p>
+					<p className='screen__controls-time-timer'>00</p>
+				</div>
 			</div>
-		</div>
-    </ScreenStyles>
-  )
+		</ScreenStyles>
+	)
 }
 
 const ScreenStyles = styled.div`
 	.screen__container-cards{
-		box-sizing: border-box;
 		width: 40.9rem;
 		height: 25rem;
-		display: flex;
-		flex-direction: row;
-		justify-content: center;
+
+		display: grid;
 		align-items: center;
-		box-shadow: 0px 0.6032302072222955px 0.6032302072222955px -1.25px rgba(0, 0, 0, 0.18), 0px 2.290210571630906px 2.290210571630906px -2.5px rgba(0, 0, 0, 0.15887), 0px 10px 10px -3.75px rgba(0, 0, 0, 0.0625);
-		background-color: #ffffff;
-		overflow: hidden;
-		padding: 0px 0px 0px 0px;
-		align-content: center;
-		flex-wrap: wrap;
-		gap: 13;
+    	justify-items: center;
+		grid-template-columns: repeat(5, 1fr);
+		grid-template-rows: repeat(3, 1fr);
+
+		grid-template-areas: 
+			"div1 div2 div3 div4 div5"
+			"div6 div7 div8 div9 div10"
+			"div11 div12 div13 div14 div15"
+		;
+
+		gap: 13px;
 		border-radius: 37px;
+		padding: 10px;
 		border: 4px solid #d4d4d4;
+
+		&.pause{
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			background-color: var(--pause-game);
+
+			p{
+				display: block;
+				font-size: 3rem;
+				color: #b5b5b5;
+			}
+		}
 	}
 
     .screen__controls {
@@ -79,7 +107,7 @@ const ScreenStyles = styled.div`
 		color: var(--white-color);
 	}
 
-    .screen__controls-btn-restart {
+    .screen__controls-btn-finish {
 		background-color: var(--primary-color);
 	}
 
