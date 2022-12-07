@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { GameContext } from '../../context/GameContext';
 import { generateCards } from '../../logic/generateCards';
@@ -6,16 +6,24 @@ import Card from '../Card/Card';
 
 
 
+
 const ScreenGame = () => {
 
-	const { start, handleStart, handleFinish, gameOver } = useContext(GameContext);
+	const { start, handleStart, handleFinish, gameOver, borderColor } = useContext(GameContext);
+	const [cards, setCards] = useState([]);
 
+	useEffect(() => {
+	  	setCards(generateCards());
+	}, [start]);
+	
 	return (
 		<ScreenStyles className='screen'>
-			<div className={`screen__container-cards ${ start ? "" : "pause" } ${ gameOver ? 'game-over' : '' }`}>
+			<div 
+				className={`screen__container-cards ${ start ? "" : "pause" } ${ gameOver ? 'game-over' : '' }`} 
+				style={{ border: `4px solid #${borderColor}` }}>
 				{
 					start 
-					? generateCards().map((card) => <Card key={card.number}number={card.number} area={card.area}/>)
+					? cards.map((card) => <Card key={card.number}number={card.number} area={card.area}/>)
 					: gameOver ? <p>You lose...</p> : <p>Press Start</p>
 				}
 			</div>
@@ -43,6 +51,7 @@ const ScreenStyles = styled.div`
     	justify-items: center;
 		grid-template-columns: repeat(5, 1fr);
 		grid-template-rows: repeat(3, 1fr);
+		transition: all .3s ease-in-out;
 
 		grid-template-areas: 
 			"div1 div2 div3 div4 div5"
@@ -53,7 +62,7 @@ const ScreenStyles = styled.div`
 		gap: 13px;
 		border-radius: 37px;
 		padding: 10px;
-		border: 4px solid #d4d4d4;
+		
 
 		&.pause{
 			display: flex;

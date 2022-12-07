@@ -1,14 +1,18 @@
 import React, { useContext } from 'react'
 import styled from 'styled-components'
 import { GameContext } from '../../context/GameContext';
-
+import { TimerContext } from '../../context/TimerContext';
 
 const Card = ({ number, area }) => {
 
+    const { timer } = useContext(TimerContext);
     const { handleClickCard } = useContext(GameContext);
 
     return (
-        <SytlesCard className='card' style={{gridArea: area}} onClick={(e)=> handleClickCard(e)}>
+        <SytlesCard 
+            style={{gridArea: area}} 
+            className={`card ${timer === 0 && "hidden"}`} 
+            onClick={(e) => handleClickCard(e)}>
             {number}
         </SytlesCard>
     )

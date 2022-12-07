@@ -5,18 +5,21 @@ import GameHeader from '../GameHeader/GameHeader'
 import Header from '../Header/Header'
 import ScreenGame from '../ScreenGame/ScreenGame'
 import GameContextProvider from '../../context/GameContext';
+import TimerContextProvider from '../../context/TimerContext'
 
 const Game = () => {
     return (
         <section className='game'>
             <ThemeProvider>
-                <Header/>
-                <GameContextProvider>
+                <TimerContextProvider>
+                    <GameContextProvider>
+                        <Header/>
                         <StyleGame className='game__container'>
                             <GameHeader/>
                             <ScreenGame/>
                         </StyleGame>
-                </GameContextProvider>
+                    </GameContextProvider>
+                </TimerContextProvider>
             </ThemeProvider>
         </section>
     )

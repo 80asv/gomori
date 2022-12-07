@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import styled from 'styled-components'
 import { GameContext } from '../../context/GameContext';
+import TimerContextProvider from '../../context/TimerContext';
 import Timer from '../Timer/Timer';
 
 const GameHeader = ({ numLevel }) => {
@@ -10,7 +11,11 @@ const GameHeader = ({ numLevel }) => {
   return (
     <StyleHeaderGame className='game-header'>
         <h2>Level {numLevel || 1}</h2>
-        { start ? <Timer initialTimer={15}/> : <p>00:00</p> }
+        { 
+          start 
+          ? <Timer/>
+          : <p>00:00</p> 
+        }
     </StyleHeaderGame>
   )
 }
