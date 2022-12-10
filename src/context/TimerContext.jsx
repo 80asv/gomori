@@ -4,7 +4,9 @@ export const TimerContext = createContext();
 
 export default function TimerContextProvider({ children }){
 
-    const [timer, setTimer] = useState(15);
+	const [initialTimer, setInitialTimer] = useState(15);
+
+    const [timer, setTimer] = useState(initialTimer);
 	const [runTime, setRunTime] = useState(false);
 
     useEffect(() => {
@@ -26,14 +28,19 @@ export default function TimerContextProvider({ children }){
 
 	const resetTimer = () => {
 		setRunTime(false);
-		setTimer(15);
+		setInitialTimer(15);
+		setTimer(initialTimer);
 	}
 
 	const startTimer = () => {
 		setRunTime(true);
 	}
 
-    const data = { timer, setTimer, resetTimer, startTimer }
+	const reduceTimer = (timeToReduce) => {
+		setInitialTimer(initialTimer - timeToReduce);
+	}
+
+    const data = { timer, setTimer, resetTimer, startTimer, setInitialTimer, reduceTimer }
 
     return(
         <TimerContext.Provider value={data}>

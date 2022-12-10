@@ -3,13 +3,15 @@ import styled from 'styled-components'
 import { GameContext } from '../../context/GameContext';
 import { generateCards } from '../../logic/generateCards';
 import Card from '../Card/Card';
+import GameOver from '../GameOver/GameOver';
+import WinLevel from '../WinLevel/WinLevel';
 
 
 
 
 const ScreenGame = () => {
 
-	const { start, handleStart, handleFinish, gameOver, borderColor } = useContext(GameContext);
+	const { start, handleStart, handleFinish, gameOver, borderColor, score, winLevel } = useContext(GameContext);
 	const [cards, setCards] = useState([]);
 
 	useEffect(() => {
@@ -21,11 +23,13 @@ const ScreenGame = () => {
 			<div 
 				className={`screen__container-cards ${ start ? "" : "pause" } ${ gameOver ? 'game-over' : '' }`} 
 				style={{ border: `4px solid #${borderColor}` }}>
-				{
-					start 
-					? cards.map((card) => <Card key={card.number}number={card.number} area={card.area}/>)
-					: gameOver ? <p>You lose...</p> : <p>Press Start</p>
-				}
+
+				{ !start && !gameOver && !winLevel && <p>Press Start</p> }
+
+				{ start && cards.map((card) => <Card key={card.number}number={card.number} area={card.area}/>) }
+
+				{ gameOver && <GameOver/> }
+				{ winLevel && <WinLevel/> }
 			</div>
 			<div className="screen__controls">
 				<div className="screen__controls-btns">
@@ -34,7 +38,7 @@ const ScreenGame = () => {
 				</div>
 				<div className="screen__controls-time">
 					<p className='screen__controls-time-label'>Score</p>
-					<p className='screen__controls-time-score'>0</p>
+					<p className='screen__controls-time-score'>{score}</p>
 				</div>
 			</div>
 		</ScreenStyles>
@@ -88,6 +92,10 @@ const ScreenStyles = styled.div`
 				font-size: 3rem;
 				color: #b5b5b5;
 			}
+		}
+
+		&.win-level{
+
 		}
 	}
 

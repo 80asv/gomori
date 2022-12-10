@@ -13,7 +13,7 @@ const Card = ({ number, area }) => {
             style={{gridArea: area}} 
             className={`card ${timer === 0 && "hidden"}`} 
             onClick={(e) => handleClickCard(e)}>
-            {number}
+            { number }
         </SytlesCard>
     )
 }
@@ -24,12 +24,16 @@ const SytlesCard = styled.div`
     align-items: center;
     width: 5.3rem;
     height: 5.3rem;
-    background-color: rgba(27, 213, 238, 0.33);
+    background-color: var(--light-blue);
     border-radius: 1.5rem;
     cursor: pointer;
-    color: var(--white-color);
+    color: var(--secundary-color);
     font-weight: 500;
-    font-size: 2rem;
+    font-size: 2.2rem;
+
+    &.hidden{
+        color: var(--light-blue);
+    }
 `;
 
 
