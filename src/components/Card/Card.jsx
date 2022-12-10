@@ -11,9 +11,8 @@ const Card = ({ number, area }) => {
     return (
         <SytlesCard 
             style={{gridArea: area}} 
-            className={`card ${timer === 0 && "hidden"}`} 
-            onClick={(e) => handleClickCard(e)}>
-            { number }
+            onClick={(e) => handleClickCard(number, e)}>
+            {(timer != 0) && number}
         </SytlesCard>
     )
 }
@@ -30,10 +29,6 @@ const SytlesCard = styled.div`
     color: var(--secundary-color);
     font-weight: 500;
     font-size: 2.2rem;
-
-    &.hidden{
-        color: var(--light-blue);
-    }
 `;
 
 

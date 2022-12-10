@@ -31,17 +31,20 @@ export default function GameContextProvider({ children }){
         setBorderColor("D4D4D4");
         setScore(0);
         setLevel(1);
+        setWinLevel(false);
+        setCounter(1);
     }
 
-    const handleClickCard = (e) => {
+    const handleClickCard = (number, e) => {
         //if(timer > 0) return;
-        if(e.target.innerText === counter.toString()){
+        if(number === counter){
             setCounter(counter + 1);
             setBorderColor(borderColors[counter - 1]);
             e.target.style.display = 'none';
             if(counter === 9) return handleWinLevel();
         } else {
             handleGameOver();
+            setBorderColor("ff6666");
             setCounter(1);
         }
     }
@@ -52,20 +55,20 @@ export default function GameContextProvider({ children }){
         isStart(false);
         setScore(0);
         setLevel(1);
-        setBorderColor("D4D4D4");
     }
 
     const handleWinLevel = () => {
         setWinLevel(true);
         stopTimer();
         reduceTimer(2);
-        setScore(score + 100);
-        setLevel(level + 1);
-        setBorderColor("D4D4D4");
+        setBorderColor("58e35c");
         isStart(false);
     }
 
     const nextLevel = () => {
+        setBorderColor("D4D4D4");
+        setScore(score + 100);
+        setLevel(level + 1);
         setCounter(1);
         isStart(true);
         startTimer();

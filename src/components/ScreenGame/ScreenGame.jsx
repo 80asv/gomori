@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react'
-import styled from 'styled-components'
-import { GameContext } from '../../context/GameContext';
 import { generateCards } from '../../logic/generateCards';
-import Card from '../Card/Card';
+import { GameContext } from '../../context/GameContext';
 import GameOver from '../GameOver/GameOver';
 import WinLevel from '../WinLevel/WinLevel';
+import styled from 'styled-components'
+import Card from '../Card/Card';
 
 
 
@@ -21,13 +21,10 @@ const ScreenGame = () => {
 	return (
 		<ScreenStyles className='screen'>
 			<div 
-				className={`screen__container-cards ${ start ? "" : "pause" } ${ gameOver ? 'game-over' : '' }`} 
-				style={{ border: `4px solid #${borderColor}` }}>
-
+				className={`screen__container-cards ${ start ? "" : "pause" } ${ gameOver ? 'game-over' : '' } ${winLevel ? 'win' : '' }`} 
+				style={{ border: `4px solid #${borderColor}`, animation: `${winLevel ? 'winColor' : 'none'}` }}>
 				{ !start && !gameOver && !winLevel && <p>Press Start</p> }
-
-				{ start && cards.map((card) => <Card key={card.number}number={card.number} area={card.area}/>) }
-
+				{ start && cards.map((card) => <Card key={card.number} number={card.number} area={card.area}/>) }
 				{ gameOver && <GameOver/> }
 				{ winLevel && <WinLevel/> }
 			</div>
@@ -85,18 +82,19 @@ const ScreenStyles = styled.div`
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			background-color: var(--pause-game);
+			background-color: var(--lose-color);
 
 			p{
-				display: block;
+				display: block;	
 				font-size: 3rem;
 				color: #b5b5b5;
 			}
 		}
 
-		&.win-level{
-
+		&.win{
+			background-color: var(--win-color);
 		}
+
 	}
 
     .screen__controls {

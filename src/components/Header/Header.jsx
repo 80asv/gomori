@@ -14,14 +14,10 @@ const Header = () => {
 const HeaderStyles = styled.header`
     width: 100%;
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
-    align-items: flex-start;
-    overflow: visible;
     padding: 1.4em;
-    align-content: flex-start;
-    flex-wrap: nowrap;
-	border-bottom: 1px solid var(--grey-line-color);
+    background-color: var(--white-color);
+	  border-bottom: 1px solid var(--grey-line-color);
 `;
 
 export default Header

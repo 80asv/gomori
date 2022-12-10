@@ -40,11 +40,13 @@ export default function TimerContextProvider({ children }){
 
 	const reduceTimer = (timeToReduce) => {
 		setRunTime(false);
-		setInitialTimer(initialTimer - timeToReduce);
-		setTimer(initialTimer - timeToReduce);
+		if(initialTimer < 4){
+			setTimer(3);
+		} else {
+			setInitialTimer(initialTimer - timeToReduce);
+			setTimer(initialTimer - timeToReduce);
+		}
 	}
-
-
 
     const data = { timer, setTimer, resetTimer, startTimer, setInitialTimer, reduceTimer, stopTimer }
 
