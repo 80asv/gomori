@@ -15,7 +15,7 @@ export default function GameContextProvider({ children }){
     const [score, setScore] = useState(0);
     const [winLevel, setWinLevel] = useState(false);
 
-    const { startTimer, resetTimer, timer, reduceTimer } = useContext(TimerContext);
+    const { startTimer, resetTimer, reduceTimer, timer, stopTimer } = useContext(TimerContext);
 
     const handleStart = () => {
         setGameOver(false); 
@@ -48,6 +48,7 @@ export default function GameContextProvider({ children }){
 
     const handleGameOver = () => {
         setGameOver(true);
+        resetTimer();
         isStart(false);
         setScore(0);
         setLevel(1);
@@ -56,7 +57,8 @@ export default function GameContextProvider({ children }){
 
     const handleWinLevel = () => {
         setWinLevel(true);
-        setWinLevel(true);
+        stopTimer();
+        reduceTimer(2);
         setScore(score + 100);
         setLevel(level + 1);
         setBorderColor("D4D4D4");
@@ -66,20 +68,9 @@ export default function GameContextProvider({ children }){
     const nextLevel = () => {
         setCounter(1);
         isStart(true);
-        reduceTimer(5);
         startTimer();
         setWinLevel(false);
     }
-
-
-    // const nextLevel = () => {
-    //     reduceTimer(5);
-    //     setWinLevel(true);
-    //     setScore(score + 100);
-    //     setLevel(level + 1);
-    //     setBorderColor("D4D4D4");
-    //     winLevel(false);
-    // }
 
     const data = { 
         start, 
