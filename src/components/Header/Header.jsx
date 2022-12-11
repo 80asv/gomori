@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import ThemeToggle from '../ThemeToggle/ThemeToggle'
+import ThemeToggle from '../ThemeToggle/ThemeToggle';
+
 
 const Header = () => {
   return (
@@ -13,9 +14,11 @@ const Header = () => {
 
 const HeaderStyles = styled.header`
     width: 100%;
+    height: 4rem;
     display: flex;
     justify-content: space-between;
-    padding: 1.4em;
+    align-items: center;
+    padding: 0 1.5rem;
     background-color: var(--white-color);
 	  border-bottom: 1px solid var(--grey-line-color);
 `;
