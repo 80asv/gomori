@@ -21,14 +21,18 @@ const SytlesCard = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 5.3rem;
-    height: 5.3rem;
+    width: 100%;
+    height: 100%;
     background-color: var(--light-blue);
     border-radius: 1.5rem;
     cursor: pointer;
     color: var(--secundary-color);
     font-weight: 500;
     font-size: 2.2rem;
+    
+    @media screen and (max-width: 32.5rem){
+        font-size: 1.875rem;
+    }
 `;
 
 

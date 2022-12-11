@@ -36,7 +36,7 @@ export default function GameContextProvider({ children }){
     }
 
     const handleClickCard = (number, e) => {
-        //if(timer > 0) return;
+        if(timer > 0) return;
         if(number === counter){
             setCounter(counter + 1);
             setBorderColor(borderColors[counter - 1]);

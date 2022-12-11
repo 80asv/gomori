@@ -1,10 +1,9 @@
 import React, { useContext } from 'react'
 import styled from 'styled-components'
 import { GameContext } from '../../context/GameContext';
-import TimerContextProvider from '../../context/TimerContext';
 import Timer from '../Timer/Timer';
 
-const GameHeader = ({ numLevel }) => {
+const GameHeader = () => {
 
   const { start, level } = useContext(GameContext);
 
@@ -29,7 +28,8 @@ const GameHeader = ({ numLevel }) => {
  * 
  * STYLES */
 const StyleHeaderGame = styled.header`
-    width: 638px;
+    width: 100%;
+    max-width: 40.9rem;
     display: flex;
     flex-direction: row;
     justify-content: space-between;

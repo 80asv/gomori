@@ -33,9 +33,9 @@ const ScreenGame = () => {
 					<button className='screen__controls-btn screen__controls-btn-start' onClick={handleStart}>Start</button>
 					<button className='screen__controls-btn screen__controls-btn-finish' onClick={handleFinish}>Finish</button>
 				</div>
-				<div className="screen__controls-time">
-					<p className='screen__controls-time-label'>Score</p>
-					<p className='screen__controls-time-score'>{score}</p>
+				<div className="screen__controls-score">
+					<p className='screen__controls-score-label'>Score</p>
+					<p className='screen__controls-score-score'>{score}</p>
 				</div>
 			</div>
 		</ScreenStyles>
@@ -43,8 +43,15 @@ const ScreenGame = () => {
 }
 
 const ScreenStyles = styled.div`
+	width: 100%;
+	max-width: 40.9rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
 	.screen__container-cards{
-		width: 40.9rem;
+		width: 100%;
 		height: 25rem;
 
 		display: grid;
@@ -98,6 +105,7 @@ const ScreenStyles = styled.div`
 	}
 
     .screen__controls {
+		width: 100%;
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
@@ -143,22 +151,49 @@ const ScreenStyles = styled.div`
 		background-color: var(--secundary-color);
 	}
 
-    .screen__controls-time {
+    .screen__controls-score {
 		display: flex;
 		align-items: center;
 		gap: 10px;
 	}
 
-    .screen__controls-time-label {
+    .screen__controls-score-label {
 		color: var(--secundary-color);
 		font-weight: 500;
 	}
 
-	.screen__controls-time-score {
+	.screen__controls-score-score {
 		border-radius: 11px;
 		font-weight: 500;
 		font-size: 1.5rem;
 		color: var(--black-light);
+	}
+
+	@media screen and (max-width: 32.5rem){
+		.screen__container-cards{
+			grid-template-columns: repeat(4, 1fr);
+			grid-template-rows: repeat(auto-fill, minmax(2rem, 5.3rem));
+
+			grid-template-areas: 
+				"div1 div2 div3 div4" 
+				"div5 div6 div7 div8"
+				"div9 div10 div11 div12"
+				"div13 div14 div15 div16"
+			;
+		}
+
+		.screen__controls-btn {
+			width: 4.875rem;
+			font-size: 0.8rem;
+		}
+
+		.screen__controls-score-label {
+			font-size: 14px;
+		}
+
+		.screen__controls-score-score {
+			font-size: 20px;
+		}
 	}
 `;
 

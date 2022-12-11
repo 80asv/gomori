@@ -5,9 +5,10 @@ import ScreenGame from '../ScreenGame/ScreenGame'
 import { GameContext } from '../../context/GameContext';
 
 const Game = () => {
-    const { winLevel } = useContext(GameContext);
+    const { winLevel, gameOver
+     } = useContext(GameContext);
     return (
-        <GameStyles className={`game ${ winLevel ? 'flash' : 'none' }`}>
+        <GameStyles className={`game ${ winLevel ? 'flash' : 'none' } ${ gameOver ? 'game-over' : 'none'}`}>
             <section className='game__container'>
                 <GameHeader/>
                 <ScreenGame/>
@@ -24,6 +25,11 @@ const GameStyles = styled.section`
 	    animation: flash 1s both;
     }
 
+    &.game-over{
+        -webkit-animation: gameOver 1s both;
+	    animation: gameOver 1s both;
+    }
+
     .game__container{    
         box-sizing: border-box;
         margin-top: auto;
@@ -33,7 +39,7 @@ const GameStyles = styled.section`
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        padding: 0px 40px 0px 40px;
+        padding: 0 1.25rem 0 1.25rem;
         overflow: hidden;
         align-content: center;
     }
@@ -42,6 +48,13 @@ const GameStyles = styled.section`
         0%, 80% {background-color: #d4fbdb;}
         90% { background-color: #d4fbdbb3;}
         95% { background-color: #d4fbdb7a;}
+        100% {background-color: #ffffff;}
+    }
+
+    @keyframes gameOver {    
+        0%, 80% {background-color: #fbd4d4;}
+        90% { background-color: #fbd4d4b3;}
+        95% { background-color: #fbd4d479;}
         100% {background-color: #ffffff;}
     }
 `;

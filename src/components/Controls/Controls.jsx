@@ -1,6 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { GameContext } from '../../context/GameContext'
 
 const Controls = () => {
+
+  const {start} = useContext(GameContext);
+
   return (
     <div className='controls'>
         <div className='controls__btns'>
