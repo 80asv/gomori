@@ -1,13 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
-import ThemeToggle from '../ThemeToggle/ThemeToggle';
 
 
 const Header = () => {
   return (
     <HeaderStyles className='header'>
         <h1 className='header__h1'>GOMORI</h1>
-        <ThemeToggle/>
     </HeaderStyles>
   )
 }
