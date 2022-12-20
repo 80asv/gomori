@@ -1,3 +1,3 @@
 # Gomori
 
-play in gomori.vercel.app
+play in https://gomori.vercel.app
