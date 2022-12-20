@@ -1,3 +1,3 @@
 # Gomori
 
-simple game in progress
+play in gomori.vercel.app
